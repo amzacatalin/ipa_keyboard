@@ -13,9 +13,10 @@ function App() {
     el.chars.forEach(() => itemsRef.current[letterIndex].push(createRef()))
   });
 
-  const onClicked = (letterIndex, index) => () => {
-    const currentRef = itemsRef.current[letterIndex][index];
-    console.log(currentRef.current.value);
+  const onClicked = (letterIndex, charIndex) => () => {
+    const currentRef = itemsRef.current[letterIndex][charIndex];
+    const value = currentRef.current.value;
+    console.log(value);
   };
 
   return (
@@ -23,12 +24,12 @@ function App() {
       {templateKeys.map((el, letterIndex) => (
         <div key={letterIndex}>
           <p>{el.letter}</p>
-          {el.chars.map((char, index) => (
+          {el.chars.map((char, charIndex) => (
             <input
-              key={index}
-              ref={itemsRef.current[letterIndex][index]}
+              key={charIndex}
+              ref={itemsRef.current[letterIndex][charIndex]}
               defaultValue={char}
-              onClick={onClicked(letterIndex, index)}
+              onClick={onClicked(letterIndex, charIndex)}
             />
           ))}
         </div>
